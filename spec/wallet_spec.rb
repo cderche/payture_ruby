@@ -27,7 +27,8 @@ RSpec.describe Payture::Wallet, "#init" do
       res = wallet.init(MERCHANT, DATA)
       puts res
       expect(res).not_to be_nil
-      expect(res.init).not_to be_nil
+      expect(res['Init']).not_to be_nil
+      expect(res['Init']['SessionId']).not_to be_nil
     end
   end
 end

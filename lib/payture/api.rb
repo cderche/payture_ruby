@@ -23,7 +23,8 @@ class Payture::API
     req.body  = data.to_query
     res       = http.request(req)
 
-    OpenStruct.new(Hash.from_xml(res.body).downcase_key)
+    # OpenStruct.new(Hash.from_xml(res.body).downcase_key)
+    Hash.from_xml(res.body)
   end
 
 end
