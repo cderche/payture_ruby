@@ -23,6 +23,7 @@ class Payture::API
     http      = Net::HTTP.new(uri.host, uri.port)
     req       = Net::HTTP::Post.new(uri.request_uri)
     req.body  = data.to_query
+    puts "request: #{req}"
     res       = http.request(req)
 
     # OpenStruct.new(Hash.from_xml(res.body).downcase_key)
