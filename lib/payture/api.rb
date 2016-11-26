@@ -16,15 +16,15 @@ class Payture::API
 
   def request(path, merchant, params)
     data      = { VWID: merchant, DATA: params.url_encode }
-    puts "request.data: #{data}"
+    # puts "request.data: #{data}"
 
     uri       = URI::HTTPS.build({ host: @host, path: path })
-    puts "URI: #{uri}"
+    # puts "URI: #{uri}"
     http      = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    # http.use_ssl = true
     req       = Net::HTTP::Post.new(uri.request_uri)
     req.body  = data.to_query
-    puts "request: #{req}"
+    # puts "request: #{req}"
     res       = http.request(req)
 
     # OpenStruct.new(Hash.from_xml(res.body).downcase_key)
