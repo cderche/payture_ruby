@@ -19,9 +19,9 @@ class Payture::API
     # puts "request.data: #{data}"
 
     uri       = URI::HTTPS.build({ host: @host, path: path })
-    # puts "URI: #{uri}"
+    puts "URI: #{uri}"
     http      = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
+    http.use_ssl = true
     req       = Net::HTTP::Post.new(uri.request_uri)
     req.body  = data.to_query
     # puts "request: #{req}"
