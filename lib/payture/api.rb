@@ -18,7 +18,7 @@ class Payture::API
     data      = { VWID: merchant, DATA: params.url_encode }
     puts "request.data: #{data}"
 
-    uri       = URI::HTTP.build({ host: @host, path: path })
+    uri       = URI::HTTPS.build({ host: @host, path: path })
     puts "URI: #{uri}"
     http      = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
