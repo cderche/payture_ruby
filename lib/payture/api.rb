@@ -16,8 +16,10 @@ class Payture::API
 
   def request(path, merchant, params)
     data      = { VWID: merchant, DATA: params.url_encode }
+    puts "request.data: #{data}"
 
     uri       = URI::HTTP.build({ host: @host, path: path })
+    puts "URI: #{uri}"
     http      = Net::HTTP.new(uri.host, uri.port)
     req       = Net::HTTP::Post.new(uri.request_uri)
     req.body  = data.to_query
