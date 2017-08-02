@@ -123,6 +123,22 @@ wallet = Payture::User.new(HOST)
 result = wallet.delete(MERCHANT_ADD, payload)
 ```
 
+### Payture::Cards
+
+#### GetList
+```ruby
+HOST = ENV['PAYTURE_HOST'] // i.e. sandbox.payture.com
+MERCHANT_ADD = ENV['PAYTURE_ADD'] // VWMerchantExampleAdd
+
+payload = {
+  VWUserLgn:    @user.email,
+  VWUserPsw:    @user.token
+}
+
+wallet = Payture::Cards.new(HOST)
+result = wallet.list(MERCHANT_ADD, payload)
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/payture_ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.

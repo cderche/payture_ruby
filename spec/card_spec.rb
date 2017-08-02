@@ -1,44 +1,26 @@
-# require 'payture'
-# require 'faker'
-#
-# HOST          = ENV['PAYTURE_HOST']
-# MERCHANT_ADD  = ENV['PAYTURE_ADD']
-# PASSWORD      = ENV['PAYTURE_PASSWORD']
-#
-# @user = {
-#   login:    Faker::Internet.email         ,
-#   password: Faker::Internet.password      ,
-#   phone:    Faker::Number.number(11)
-# }
-#
-# DATA_ADD = {
-#   VWUserLgn:    @user[:login]             ,
-#   VWUserPsw:    @user[:password]          ,
-#   CardNumber:   4111111111111112          ,
-#   EMonth:       8                         ,
-#   EYear:        18                        ,
-#   CardHolder:   'John Doe'                ,
-#   SecureCode:   123
-# }
-#
-# DATA_DELETE = {
-#   VWUserLgn:    @user[:login]             ,
-#   Password:     PASSWORD
-# }
-#
-# RSpec.describe Payture::User, "#add" do
-#   context "Given a merchant and data to register a user" do
-#     it "should get a response with data" do
-#       wallet = Payture::Card.new(HOST)
-#       res = wallet.add(MERCHANT_ADD, DATA_ADD)
-#       puts res
-#       expect(res).not_to be_nil
-#       expect(res['Add']).not_to be_nil
-#       expect(res['Add']['VWUserLgn']).not_to be_nil
-#       expect(res['Add']['Success']).to eq('True')
-#
-#       user = Payture::User.new(HOST)
-#       user.delete(MERCHANT_ADD, DATA_DELETE)
-#     end
-#   end
-# end
+require 'payture'
+
+HOST          = ENV['PAYTURE_HOST']
+MERCHANT_ADD  = ENV['PAYTURE_ADD']
+USER_LGN      = ENV['USER_LGN']
+USER_PWD      = ENV['USER_PWD']
+
+DATA_LIST = {
+  VWUserLgn:    USER_LGN,
+  VWUserPsw:    USER_PWD
+}
+
+RSpec.describe Payture::Card, "#list" do
+  context "Given a merchant and data" do
+    it "should get a response with data" do
+      wallet = Payture::Card.new(HOST)
+      res = wallet.list(MERCHANT_ADD, DATA_LIST)
+      puts res
+      expect(res).not_to be_nil
+      expect(res['GetList']).not_to be_nil
+      expect(res['GetList']['VWUserLgn']).not_to be_nil
+      expect(res['GetList']['Success']).to eq('True')
+      expect(res['GetList']['Item']).not_to be_nil
+    end
+  end
+end

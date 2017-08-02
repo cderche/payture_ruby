@@ -1,9 +1,9 @@
 class Payture::Card < Payture::Wallet
 
-  # PATH_ADD = '/vwapi/Add'
-  #
-  # def add(vwid, data)
-  #   self.request(PATH_ADD, vwid, data)
-  # end
+  PATH_LIST = '/vwapi/GetList'
+
+  def list(vwid, data)
+    self.request(PATH_LIST, vwid, data)
+  end
 
 end
